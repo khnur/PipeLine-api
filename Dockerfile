@@ -11,10 +11,10 @@ WORKDIR /app
 RUN apk add --no-cache wget
 COPY --from=build /app/target/*.jar app.jar
 
-HEALTHCHECK --interval=30s --timeout=3s CMD wget -q -O /dev/null http://localhost:8080/ || exit 1
+HEALTHCHECK --interval=30s --timeout=3s CMD wget -q -O /dev/null http://localhost:6969/ || exit 1
 
-ENV SPRING_PROFILES_ACTIVE=prod
+ENV SPRING_PROFILES_ACTIVE=dev
 ENV JAVA_OPTS=""
 
-EXPOSE 8080
+EXPOSE 6969
 ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]
