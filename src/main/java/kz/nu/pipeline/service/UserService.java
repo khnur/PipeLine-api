@@ -39,13 +39,11 @@ public class UserService {
      *
      * @param username the email
      * @param password the password
-     * @return true if authentication is successful, false otherwise
      */
-    public boolean authenticate(String username, String password) {
+    public Optional<User> authenticate(String username, String password) {
         Optional<User> userOptional = this.getUserByUsername(username);
         return userOptional
-                .filter(user -> passwordEncoder.matches(password, user.getPassword()))
-                .isPresent();
+                .filter(user -> passwordEncoder.matches(password, user.getPassword()));
     }
 
     /**
@@ -55,14 +53,14 @@ public class UserService {
      * @param password the password
      * @return true if registration is successful, false otherwise
      */
-    public boolean register(String username, String password, boolean isAdmin) {
+    public boolean register(String username, String password) {
         if (this.getUserByUsername(username).isPresent()) {
             return false;
         }
         userRepository.save(User.builder()
                 .username(username)
                 .password(passwordEncoder.encode(password))
-                .isAdmin(isAdmin)
+                .isAdmin(false)
                 .build());
         return true;
     }

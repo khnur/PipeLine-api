@@ -51,7 +51,7 @@ public class SecurityConfig {
                             auth = auth
                                     .requestMatchers("/h2-console/**").permitAll()
                                     .requestMatchers("/swagger-ui/**").permitAll()
-                                    .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                                    .requestMatchers("/swagger-ui/**", "/api-docs/**").permitAll()
                                     .requestMatchers("/auth/login").permitAll();
                             if (Boolean.TRUE.equals(jwtEnabled)) {
                                 auth.anyRequest().authenticated();
