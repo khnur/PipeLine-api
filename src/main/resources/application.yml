@@ -68,6 +68,12 @@ app:
     supported-formats: .xlsx,.xls
   pipe:
     default-status: NEW
+  aws:
+    s3:
+      access-key: ${AWS_ACCESS_KEY_ID}
+      secret-key: ${AWS_SECRET_ACCESS_KEY}
+      region: us-west-2
+      bucket-name: pipeline-nur
 
 jwt:
   enabled: true
