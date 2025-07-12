@@ -14,6 +14,8 @@ COPY --from=build /app/target/*.jar app.jar
 HEALTHCHECK --interval=30s --timeout=3s CMD wget -q -O /dev/null http://localhost:6969/ || exit 1
 
 ENV SPRING_PROFILES_ACTIVE=dev
+ENV AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+ENV AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
 ENV JAVA_OPTS=""
 
 EXPOSE 6969
